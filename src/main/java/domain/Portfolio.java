@@ -1,4 +1,10 @@
-import java.util.ArrayList;
+package domain;
+
+import observer.EventListener;
+import observer.EventManager;
+import observer.EventManagerImpl;
+import observer.EventType;
+
 import java.util.List;
 
 public class Portfolio {

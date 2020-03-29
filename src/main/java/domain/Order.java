@@ -1,7 +1,9 @@
+package domain;
+
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Order implements OrderInterface{
+public class Order implements OrderInterface {
 
     private int id;
     private User user;

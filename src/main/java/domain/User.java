@@ -1,18 +1,25 @@
+package domain;
+
+import observer.EventListener;
+import observer.EventType;
+import proxy.OrderProxy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class User implements EventListener{
+public class User implements EventListener {
     private int id;
     private String name;
-    private List<OrderInterface> orders = new ArrayList<>();
+    private List<OrderInterface> orders;
     private Portfolio portfolio;
 
     public User(int id, String name) {
         this.id = id;
         this.name = name;
+        orders = new ArrayList<>();
         portfolio = new Portfolio.PortfolioBuilder()
-                .setId(ThreadLocalRandom.current().nextInt())
+                .setId(ThreadLocalRandom.current().nextInt()) // autoincrement
                 .setSamples(new ArrayList<>())
                 .setUser(this)
                 .build();
@@ -28,6 +35,14 @@ public class User implements EventListener{
 
     public void subscribeToUserAddOperation(User user) {
         user.getPortfolio().subcribe(EventType.ADD, user);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Portfolio getPortfolio() {
