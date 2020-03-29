@@ -1,8 +1,9 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Portfolio {
+
+    public EventManager eventManager;
 
     private final long id;
     private final User owner;
@@ -12,9 +13,29 @@ public class Portfolio {
         this.id = id;
         this.owner = owner;
         this.samples = samples;
+        eventManager = new EventManagerImpl();
+    }
+
+    public void addToPortfolio(Sample sample) {
+        samples.add(sample);
+        eventManager.notify(EventType.ADD, sample);
+    }
+
+    public void removeFromPortfolio(Sample sample) {
+        samples.remove(sample);
+        eventManager.notify(EventType.REMOVE, sample);
+    }
+
+    public void subcribe(EventType eventType, EventListener listener) {
+        eventManager.subscribe(eventType, listener);
+    }
+
+    public void unsubcribe(EventType eventType, EventListener listener) {
+        eventManager.unsubscribe(eventType, listener);
     }
 
     public static class PortfolioBuilder {
+
 
         private long id;
         private User user;
@@ -30,8 +51,8 @@ public class Portfolio {
             return this;
         }
 
-        public PortfolioBuilder setSamples(Sample... samples) {
-            this.samples = new ArrayList<>(Arrays.asList(samples));
+        public PortfolioBuilder setSamples(List<Sample> samples) {
+            this.samples = samples;
             return this;
         }
 
