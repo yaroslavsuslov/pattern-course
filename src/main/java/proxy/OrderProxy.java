@@ -1,3 +1,9 @@
+package proxy;
+
+import domain.Order;
+import domain.OrderInterface;
+import domain.Sample;
+
 import java.util.List;
 
 public class OrderProxy implements OrderInterface {

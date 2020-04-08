@@ -1,3 +1,5 @@
+package domain;
+
 import lombok.Data;
 
 @Data

@@ -1,4 +1,6 @@
-import java.util.List;
+package observer;
+
+import domain.Sample;
 
 public interface EventListener {
 

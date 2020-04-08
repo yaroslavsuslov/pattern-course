@@ -1,3 +1,7 @@
+package observer;
+
+import domain.Sample;
+
 import java.util.*;
 
 public class EventManagerImpl implements EventManager {
